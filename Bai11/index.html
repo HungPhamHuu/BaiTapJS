@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 11</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script language="javascript">
+            const array = [13, 90, 67, 4, 100, 32, 1, 56, 45];
+            function checkArray(array){
+                const arrayLength = array.length;
+
+                for(let i = 0; i < arrayLength - 1; i++){
+                    for(let x = 0; x < arrayLength - 1 -i; x++){
+                        if(array[x] > array[x + 1]){
+                            const result = array[x];
+                            array[x] = array[x + 1];
+                            array[x + 1] = result;
+                        }
+                    }
+                }
+                return array;
+            }   
+
+            console.log(checkArray(array));
+        </script>
+    </body>
+</html>

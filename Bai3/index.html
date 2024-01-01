@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 3</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>     
+        <script language="javascript">
+            const name = "Genbyte";
+            const nameUpper = convertCase(name, true);
+            const nameLower = convertCase(name, false);
+            function convertCase(inputString, toUpperCase){
+                let result = "";
+                for(let i = 0; i < inputString.length; i++){
+                    if(toUpperCase){
+                        result += inputString[i].toUpperCase();
+                    }
+                    else{
+                        result += inputString[i].toLowerCase();
+                    }
+                }
+                return result;
+            }
+
+            console.log("Tên bắt đầu: ", name);
+            console.log("Tên sau khi viết hoa: ", nameUpper);
+            console.log("Tên sau khi viết thường: ", nameLower);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 5</title>
+        <meta charset="UTF-8">
+    </head> 
+    <body>
+        <script language="javascript">
+            let fullName = "Pham Huu Hung";
+            function formatFullName(fullName){
+                const name = fullName.split(" ");
+                let formatName = "";
+                for(let i = 0; i < name.length; i++){
+                    if(i === 0 || i === 1){
+                        formatName += name[i].charAt(0).toLowerCase();
+                    }
+                    else{
+                        formatName += name[i].toLowerCase();
+                    }
+                }
+                return formatName;
+            }
+
+            console.log(formatFullName(fullName));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 9</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script language="javascript">
+            const array = [1, -2, 3, 4, -1, 2, 1, -5, 4];
+            const n = 6;
+            const ketQua = maxSubarray(array, n);
+            function maxSubarray() {
+                if (n <= 0 || n > array.length) {
+                    return "Không tính được";
+                }
+                let maxSum = 0;
+                let currentSum = 0;
+                let startIndex = 0;
+
+                for (let i = 0; i < n; i++) {
+                    maxSum += array[i];
+                    currentSum += array[i];
+                }
+
+                let endIndex = n - 1;
+                let tempIndex = 0;
+
+                for (let i = n; i < array.length; i++) {
+                    currentSum = currentSum + array[i] - array[tempIndex];
+                    tempIndex++;
+
+                    if (currentSum > maxSum) {
+                        maxSum = currentSum;
+                        startIndex = tempIndex;
+                        endIndex = i;
+                    }
+                }
+
+                return array.slice(startIndex, endIndex + 1);
+            }
+
+            console.log("Dãy con có tổng lớn nhất:", ketQua);
+        </script>
+    </body>
+</html>

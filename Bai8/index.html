@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 8</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script language="javascript">
+            const array = [1,2,3,4,5,6,7,8,9]
+            function primeNumbers() {
+                const primes = [];
+
+                for (let i = 0; i < array.length; i++) {
+                    const num = array[i];
+
+                    if (Prime(num)) {
+                    primes.push(num);
+                    }
+                }
+
+                return primes;
+            }
+            // Hàm kiểm tra một số có phải là số nguyên tố không
+            function Prime(num) {
+                if (num <= 1) {
+                    return false;
+                }
+
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) {
+                    return false;
+                    }
+                }
+
+                return true;
+            }
+
+            console.log(primeNumbers(array));
+        </script>
+    </body>
+</html>

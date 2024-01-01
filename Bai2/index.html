@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 2</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script language="javascript">
+            const array = "How are you";
+            const x = "u";
+            function countString(){
+                const count = 0;
+                for(const i = 0; i < array.length; ++i){
+                    if(array.substring(i, i + x.length) == x){
+                        count += 1;
+                    }
+                }
+                return count;
+            }
+            
+            var result = countString(x, array);
+            console.log("Kí tự " + x + " " + "xuất hiện" + " " + result + " " +  "lần");
+        </script>   
+    </body>
+</html>

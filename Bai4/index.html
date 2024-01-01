@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bài 4</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script language="javascript">
+            function Symmetric(a){
+                const chuoiChuThuong = a.toLowerCase();
+                const doDaiChuoi = chuoiChuThuong.length;
+                const reverse = chuoiChuThuong.split('').reverse().join('');
+
+                for(let i = 0; i < doDaiChuoi / 2; i++){
+                    if(chuoiChuThuong[i] !== chuoiChuThuong[doDaiChuoi - 1 - i]){
+                        return "Là chuỗi không đối xứng";
+                    }
+                    else if(chuoiChuThuong === reverse){
+                        return "Là chuỗi đối xứng";
+                    }
+                    else{
+                        return true;
+                    }
+                }
+            }
+
+            console.log(Symmetric("Genbyte"));
+            console.log(Symmetric("Radar"));
+        </script>
+    </body>
+</html>

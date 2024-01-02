@@ -6,11 +6,11 @@
     </head>
     <body>     
         <script language="javascript">
-            const name = "Genbyte";
-            const nameUpper = convertCase(name, true);
-            const nameLower = convertCase(name, false);
+            var name = "Genbyte";
+            var nameUpper = convertCase(name, true);
+            var nameLower = convertCase(name, false);
             function convertCase(inputString, toUpperCase){
-                let result = "";
+                var result = "";
                 for(let i = 0; i < inputString.length; i++){
                     if(toUpperCase){
                         result += inputString[i].toUpperCase();

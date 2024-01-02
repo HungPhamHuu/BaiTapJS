@@ -7,9 +7,9 @@
     <body>
         <script language="javascript">
             function Symmetric(a){
-                const chuoiChuThuong = a.toLowerCase();
-                const doDaiChuoi = chuoiChuThuong.length;
-                const reverse = chuoiChuThuong.split('').reverse().join('');
+                var chuoiChuThuong = a.toLowerCase();
+                var doDaiChuoi = chuoiChuThuong.length;
+                var reverse = chuoiChuThuong.split('').reverse().join('');
 
                 for(let i = 0; i < doDaiChuoi / 2; i++){
                     if(chuoiChuThuong[i] !== chuoiChuThuong[doDaiChuoi - 1 - i]){

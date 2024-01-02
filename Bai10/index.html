@@ -6,14 +6,14 @@
     </head>
     <body>
         <script language="javascript">
-            const array = [1, 2, 3, 1, 2, 3, 4, 5, 1, 6];
+            var array = [1, 2, 3, 1, 2, 3, 4, 5, 1, 6];
             function Frequency(array) {
-                const frequency = {};
+                var frequency = {};
                 for (let i = 0; i < array.length; i++) {
-                    const n = array[i];
+                    var n = array[i];
                     frequency[n] = (frequency[n] || 0) + 1;
                 }
-                for (const count in frequency) {
+                for (var count in frequency) {
                     if (frequency.hasOwnProperty(count)) {
                     console.log(` Số ${count} xuất hiện ${frequency[count]} lần `);
                     }

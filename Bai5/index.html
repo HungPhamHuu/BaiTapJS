@@ -6,10 +6,10 @@
     </head> 
     <body>
         <script language="javascript">
-            let fullName = "Pham Huu Hung";
+            var fullName = "Pham Huu Hung";
             function formatFullName(fullName){
-                const name = fullName.split(" ");
-                let formatName = "";
+                var name = fullName.split(" ");
+                var formatName = "";
                 for(let i = 0; i < name.length; i++){
                     if(i === 0 || i === 1){
                         formatName += name[i].charAt(0).toLowerCase();

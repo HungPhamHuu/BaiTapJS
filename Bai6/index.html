@@ -6,20 +6,20 @@
     </head>
     <body>
         <script language="javascript">
-            const exampleDate = new Date();
-            const formattVietnameseDate = VietNameseDate(exampleDate);
+            var exampleDate = new Date();
+            var formattVietnameseDate = VietNameseDate(exampleDate);
             function VietNameseDate(inputDate) {
                 if (!(inputDate instanceof Date) || isNaN(inputDate)) {
                     return "Không hợp lệ";
                 }
-                const day = inputDate.getDate();
-                const month = inputDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên + 1
-                const year = inputDate.getFullYear();
+                let day = inputDate.getDate();
+                let month = inputDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên + 1
+                let year = inputDate.getFullYear();
 
-                const formatDay = (day < 10) ? "0" + day : day;
-                const formatMonth = (month < 10) ? "0" + month : month;
+                let formatDay = (day < 10) ? "0" + day : day;
+                let formatMonth = (month < 10) ? "0" + month : month;
 
-                const formatDate = `${formatDay}/${formatMonth}/${year}`;
+                let formatDate = `${formatDay}/${formatMonth}/${year}`;
 
                 return formatDate;
             }

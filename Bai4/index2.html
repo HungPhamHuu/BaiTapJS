@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bài 4</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        margin: 0;
+      }
+
+      .custom-form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      .form-input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .submit-button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-button:hover {
+        background-color: #45a049;
+      }
+      #result {
+        color: green;
+        font-size: 16px;
+        padding: 4px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="custom-form">
+      <div class="form-group">
+        <label for="inputField" class="form-label">Nhập thông tin:</label>
+        <input
+          type="text"
+          id="inputField"
+          name="inputField"
+          class="form-input"
+          required
+        />
+      </div>
+      <div id="result"></div>
+
+      <button id="button" class="submit-button">Gửi</button>
+    </div>
+    <script language="javascript">
+      // Cách 1 : Dùng hàm đảo chuỗi để kiểm tra
+      function Symmetric(a) {
+        let chuoiChuThuong = a.toLowerCase();
+        let reverse = chuoiChuThuong.split("").reverse().join("");
+
+        if (chuoiChuThuong == reverse) {
+          return `Chuỗi ${a} là chuỗi đối xứng`;
+        } else {
+          return `Chuỗi ${a} không là chuỗi đối xứng`;
+        }
+      }
+      //Cách 2:
+      function Symmetric2(a) {
+        let chuoiChuThuong = a.toLowerCase();
+        let flag = true;
+        for (let index = 0; index < a.length / 2; index++) {
+          if (a[index] != a[a.length - index - 1]) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          return `Chuỗi ${a} là chuỗi đối xứng`;
+        } else {
+          return `Chuỗi ${a} không là chuỗi đối xứng`;
+        }
+      }
+
+      const button = document.getElementById("button");
+      button.addEventListener("click", (event) => {
+        const input = document.getElementById("inputField");
+        const value = input.value;
+        const result = document.getElementById("result");
+        result.innerHTML = `Cách 1: ${Symmetric(
+          value
+        )} <br>Cách 2: ${Symmetric2(value)}`;
+      });
+    </script>
+  </body>
+</html>

@@ -121,14 +121,10 @@
             const input2 = document.getElementById("inputField2");
             const value = input.value;
             const n = parseInt(input2.value);
-            const index = [];
-            for(let char of value){
-                const num = parseInt(char);
-                if(!isNaN(num)){
-                    index.push(num);
-                }
+            const index = value.split(',');
+            for(let i = 0; i < index.length; i++){
+                index[i] = index[i]*1;
             }
-            console.log(index);
             const maxresult = maxSubarray(index, n);
             const result = document.getElementById("result");
             result.innerHTML =` Dãy con lớn nhất: ${maxresult.array}<br> Tổng của dãy con lớn nhất có độ dài ${n} trong mảng vừa nhập là: ${maxresult.sum}` ;

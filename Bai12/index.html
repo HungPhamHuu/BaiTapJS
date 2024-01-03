@@ -83,25 +83,13 @@
             if (n <= 0 || n > array.length) {
                 return "Không tính được";
             }
-
+            array.sort((a , b) => b - a);
 
             let maxSum = 0;
-            let currentSum = 0;
 
             for (let i = 0; i < n; i++) {
                 maxSum += array[i];
             }
-
-            currentSum = maxSum;
-
-            for (let i = n; i < array.length; i++) {
-                currentSum = currentSum + array[i] - array[i - n];
-
-                if (currentSum > maxSum) {
-                    maxSum = currentSum;
-                }
-            }
-
             return maxSum;
         }
 

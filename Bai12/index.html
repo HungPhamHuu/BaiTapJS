@@ -83,10 +83,12 @@
             if (n <= 0 || n > array.length) {
                 return "Không tính được";
             }
+            // Sắp xếp giảm dần
             array.sort((a , b) => b - a);
 
             let maxSum = 0;
 
+            // Tính tổng n phần tử đầu
             for (let i = 0; i < n; i++) {
                 maxSum += array[i];
             }

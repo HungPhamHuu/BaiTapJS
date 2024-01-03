@@ -97,7 +97,7 @@
             button.addEventListener("click", (event) => {
                 const input = document.getElementById("inputField");
                 const input2 = document.getElementById("inputField2");
-                const value = input.value;
+                const value = input.value.split(",").map(Number);
                 const count = parseInt(input2.value);
                 const result = document.getElementById("result");
                 result.innerHTML = Frequency(value, count);

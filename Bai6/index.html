@@ -3,18 +3,96 @@
     <head>
         <title>Bài 6</title>
         <meta charset="UTF-8">
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                height: 80vh;
+                background-color: white;
+                margin: 0;
+            }
+
+            .custom-form{
+                background-color: white;
+                border-radius: 2px;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+            .form-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            .form-input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .submit-button {
+                padding: 10px 20px;
+                background-color: #10c5e6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: #10c5e6;
+            }
+            #result {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+        </style>
     </head>
     <body>
+        <div class="custom-form">
+            <div class="form-group">
+                <label for="inputField" class="form-label">Nhập thông tin:</label>
+                <input type="text" id="inputField" name="inputField" class="form-input" required>
+            </div>
+
+            <div id="result"></div>
+
+            <button id="button" class="submit-button">Xác nhận</button>
+        </div>
         <script language="javascript">
-            var exampleDate = new Date();
-            var formattVietnameseDate = VietNameseDate(exampleDate);
-            function VietNameseDate(inputDate) {
-                if (!(inputDate instanceof Date) || isNaN(inputDate)) {
-                    return "Không hợp lệ";
+            // var exampleDate = new Date();
+            // var formattVietnameseDate = VietNameseDate(exampleDate);
+            // function VietNameseDate(inputDate) {
+            //     if (!(inputDate instanceof Date) || isNaN(inputDate)) {
+            //         return "Không hợp lệ";
+            //     }
+            //     let day = inputDate.getDate();
+            //     let month = inputDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên + 1
+            //     let year = inputDate.getFullYear();
+
+            //     let formatDay = (day < 10) ? "0" + day : day;
+            //     let formatMonth = (month < 10) ? "0" + month : month;
+
+            //     let formatDate = `${formatDay}/${formatMonth}/${year}`;
+
+            //     return formatDate;
+            // }
+
+            // console.log("Định dạng ngày chuẩn của Việt Nam:", formattVietnameseDate);
+            function VietNameseDate(inputDate){
+                var exampleDate = new Date(inputDate);
+                if (isNaN(exampleDate.getTime())) {
+                    return "Ngày không hợp lệ";
                 }
-                let day = inputDate.getDate();
-                let month = inputDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên + 1
-                let year = inputDate.getFullYear();
+                let day = exampleDate.getDate();
+                let month = exampleDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên + 1
+                let year = exampleDate.getFullYear();
 
                 let formatDay = (day < 10) ? "0" + day : day;
                 let formatMonth = (month < 10) ? "0" + month : month;
@@ -24,8 +102,13 @@
                 return formatDate;
             }
 
-            console.log("Định dạng ngày chuẩn của Việt Nam:", formattVietnameseDate);
-
+            const button = document.getElementById("button");
+            button.addEventListener("click", (event) => {
+                const input = document.getElementById("inputField");
+                const value = input.value;
+                const result = document.getElementById("result");
+                result.innerHTML = ` Ngày được chuyển thành: ${VietNameseDate(value)} `;
+            })
         </script>
     </body>
 </html>

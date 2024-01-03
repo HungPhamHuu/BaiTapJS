@@ -1,45 +1,139 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Bài 9</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <script language="javascript">
-            var array = [1, -2, 3, 4, -1, 2, 1, -5, 4];
-            var n = 6;
-            var ketQua = maxSubarray(array, n);
-            function maxSubarray() {
-                if (n <= 0 || n > array.length) {
-                    return "Không tính được";
-                }
-                let maxSum = 0;
-                let currentSum = 0;
-                let startIndex = 0;
 
-                for (let i = 0; i < n; i++) {
-                    maxSum += array[i];
-                    currentSum += array[i];
-                }
-
-                let endIndex = n - 1;
-                let tempIndex = 0;
-
-                for (let i = n; i < array.length; i++) {
-                    currentSum = currentSum + array[i] - array[tempIndex];
-                    tempIndex++;
-
-                    if (currentSum > maxSum) {
-                        maxSum = currentSum;
-                        startIndex = tempIndex;
-                        endIndex = i;
-                    }
-                }
-
-                return array.slice(startIndex, endIndex + 1);
+<head>
+    <title>Bài 9</title>
+    <meta charset="UTF-8">
+    <style>
+        body{
+                font-family: Arial, Helvetica, sans-serif;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                height: 80vh;
+                background-color: white;
+                margin: 0;
             }
 
-            console.log("Dãy con có tổng lớn nhất:", ketQua);
-        </script>
-    </body>
+            .custom-form{
+                background-color: white;
+                border-radius: 2px;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+            .form-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            .form-input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .submit-button {
+                padding: 10px 20px;
+                background-color: #10c5e6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: #10c5e6;
+            }
+            #result {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+            #inputField{
+                margin-bottom: 15px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="custom-form">
+        <div class="form-group">
+            <label for="inputField" class="form-label">Nhập thông tin</label>
+            <input type="text" id="inputField" name="inputField" class="form-input" required><br>
+            <label for="inputField" class="form-label">Nhập độ dài dãy con n</label>
+            <input type="text" id="inputField2" name="inputField2" class="form-input" required> 
+        </div>
+    
+        <div id="result"></div>
+    
+        <button id="button" class="submit-button">Xác nhận</button>
+    </div>
+    
+    </div>
+    <script language="javascript">
+        function maxSubarray(array, n) {
+            if (n <= 0 || n > array.length) {
+                return "Không tính được";
+            }
+
+            let maxSum = 0;
+            let currentSum = 0; 
+            let startIndex = 0;
+
+            for (let i = 0; i < n; i++) {
+                maxSum += array[i];
+                currentSum += array[i];
+            }
+
+            //maxSum = currentSum;
+            let endIndex = n - 1;
+            let tempIndex = 0;
+
+            for (let i = n; i < array.length; i++) {
+                currentSum = currentSum + array[i] - array[tempIndex];
+                //currentSum = currentSum - array[i - n] + array[i];
+                tempIndex++;
+
+                if (currentSum > maxSum) {
+                    maxSum = currentSum;
+                    startIndex = tempIndex;
+                    endIndex = i;
+                }
+            }
+
+            let maxSubarrayResult = [];
+            let sum = 0;
+            for(let i = startIndex; i <= endIndex; i++){
+                maxSubarrayResult.push(array[i]);   
+                sum += array[i];
+            }
+            return {array: maxSubarrayResult, sum: sum};
+            //return array.slice(startIndex, startIndex + n);
+        }
+
+        const button = document.getElementById("button");
+        button.addEventListener("click", (event) => {
+            const input = document.getElementById("inputField");
+            const input2 = document.getElementById("inputField2");
+            const value = input.value;
+            const n = parseInt(input2.value);
+            const index = [];
+            for(let char of value){
+                const num = parseInt(char);
+                if(!isNaN(num)){
+                    index.push(num);
+                }
+            }
+            console.log(index);
+            const maxresult = maxSubarray(index, n);
+            const result = document.getElementById("result");
+            result.innerHTML =` Dãy con lớn nhất: ${maxresult.array}<br> Tổng của dãy con lớn nhất có độ dài ${n} trong mảng vừa nhập là: ${maxresult.sum}` ;
+        });
+    </script>
+</body>
+
 </html>

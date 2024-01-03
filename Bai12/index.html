@@ -1,41 +1,120 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Bài 10</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <script language="javascript">
-            var array = [30, 8, 17, 21, 50, 45, 35];
-            var n = 3;
-            var ketQua = maxSum(array, n);
-            function maxSum() {
-                if (n <= 0 || n > array.length) {
-                    return "Không tính được";
-                }
 
-                let maxSum = 0;
+<head>
+    <title>Bài 12</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            height: 80vh;
+            background-color: white;
+            margin: 0;
+        }
 
-                for (let i = 0; i < n; i++) {
-                    maxSum += array[i];
-                }
+        .custom-form {
+            background-color: white;
+            border-radius: 2px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
 
-                for (let i = n; i < array.length; i++) {
-                    let currentSum = 0;
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-                    for (let j = 0; j < n; j++) {
-                        currentSum += array[i - j];
-                    }
+        .form-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
 
-                    if (currentSum > maxSum) {
-                        maxSum = currentSum;
-                    }
-                }
+        .form-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-                return maxSum;
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #10c5e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #10c5e6;
+        }
+
+        #result {
+            font-size: 16px;
+            padding: 4px 0;
+        }
+
+        #inputField {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="custom-form">
+        <div class="form-group">
+            <label for="inputField" class="form-label">Nhập thông tin</label>
+            <input type="text" id="inputField" name="inputField" class="form-input" required><br>
+            <label for="inputField" class="form-label">Nhập số nguyên n</label>
+            <input type="text" id="inputField2" name="inputField2" class="form-input" required>
+        </div>
+
+        <div id="result"></div>
+
+        <button id="button" class="submit-button">Xác nhận</button>
+    </div>
+    <script language="javascript">
+        function maxSumArray(array, n) {
+            if (n <= 0 || n > array.length) {
+                return "Không tính được";
             }
 
-                console.log("Tổng lớn nhất của", n, "số có trong", array, "là:", ketQua);
-        </script>
-    </body>
+
+            let maxSum = 0;
+            let currentSum = 0;
+
+            for (let i = 0; i < n; i++) {
+                maxSum += array[i];
+            }
+
+            currentSum = maxSum;
+
+            for (let i = n; i < array.length; i++) {
+                currentSum = currentSum + array[i] - array[i - n];
+
+                if (currentSum > maxSum) {
+                    maxSum = currentSum;
+                }
+            }
+
+            return maxSum;
+        }
+
+        const button = document.getElementById("button");
+        button.addEventListener("click", (event) => {
+            const input = document.getElementById("inputField");
+            const input2 = document.getElementById("inputField2");
+            const value = input.value.split(',').map(Number);
+            const n = parseInt(input2.value);
+            const result = document.getElementById("result");
+            result.innerHTML = `Tổng lớn nhất của ${n} số có trong mảng là: ${maxSumArray(value, n)}`;
+        });
+    </script> 
+</body>
+
 </html>

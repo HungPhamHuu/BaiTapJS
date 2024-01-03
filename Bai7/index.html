@@ -3,37 +3,92 @@
     <head>
         <title>Bài 7</title>
         <meta charset="UTF-8">
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                height: 80vh;
+                background-color: white;
+                margin: 0;
+            }
+
+            .custom-form{
+                background-color: white;
+                border-radius: 2px;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+            .form-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            .form-input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .submit-button {
+                padding: 10px 20px;
+                background-color: #10c5e6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: #10c5e6;
+            }
+            #result {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+        </style>
     </head>
     <body>
-        <script language="javascript">
-            const input1 = "hung@gmail.com";
-            const input2 = "0912333455";
-            const input3 = "HungPham123";
-            const input4 = "jizjcizcizi";
+        <div class="custom-form">
+            <div class="form-group">
+                <label for="inputField" class="form-label">Nhập thông tin:</label>
+                <input type="text" id="inputField" name="inputField" class="form-input" required>
+            </div>
 
-            function checkStringType(inputString) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            <div id="result"></div>
+
+            <button id="button" class="submit-button">Xác nhận</button>
+        </div>
+        <script language="javascript">
+            function checkStringType(inputString){
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+.[.com]+$/;
                 const phoneNumberRegex = /((09|03|07|08|05)+([0-9]{8})\b)/g; // /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
                 const strongPasswordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-                if (emailRegex.test(inputString)) {
-                    return " là email hợp lệ";
-                } else if (phoneNumberRegex.test(inputString)) {
-                    return "là số điện thoại hợp lệ";
-                } else if (strongPasswordRegex.test(inputString)) {
-                    return "là mật khẩu mạnh hợp lệ";
-                } else {
+                if(emailRegex.test(inputString)){
+                    return "Email hợp lệ";
+                }else if(phoneNumberRegex.test(inputString)){
+                    return "Số điện thoại hợp lệ";
+                }else if(strongPasswordRegex.test(inputString)){
+                    return "Mật khẩu mạnh";
+                }else{
                     return "Không phải là số điện thoại, email hay mật khẩu mạnh";
                 }
             }
 
-
-
-            console.log("Email này", input1, checkStringType(input1));
-            console.log("Số điện thoại này", input2, checkStringType(input2));
-            console.log("Mật khẩu này",input3, checkStringType(input3));
-            console.log("Kí tự này",input4, checkStringType(input4));
-
+            const button = document.getElementById("button");
+            button.addEventListener("click", (event) => {
+                const input = document.getElementById("inputField");
+                const value = input.value;
+                const result = document.getElementById("result");
+                result.innerHTML = checkStringType(value);
+            });
         </script>
     </body>
 </html>

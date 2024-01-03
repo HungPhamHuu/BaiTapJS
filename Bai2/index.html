@@ -3,23 +3,97 @@
     <head>
         <title>Bài 2</title>
         <meta charset="UTF-8">
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                height: 80vh;
+                background-color: white;
+                margin: 0;
+            }
+
+            .custom-form{
+                background-color: white;
+                border-radius: 2px;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+            .form-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            .form-input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .submit-button {
+                padding: 10px 20px;
+                background-color: #10c5e6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: #10c5e6;
+            }
+            #result {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+            #inputField{
+                margin-bottom: 15px;
+            }
+        </style>
     </head>
     <body>
+        <div class="custom-form">
+            <div class="form-group">
+                <label for="inputField" class="form-label">Nhập chuỗi:</label>
+                <input type="text" id="inputField" name="inputField" class="form-input" required><br>
+                <label for="inputField" class="form-label">Nhập kí tự cần đếm: </label>
+                <input type="text" id="inputField2" name="inputField2" class="form-input" required>
+            </div>
+            <div id="result"></div>
+
+            <button id="button" class="submit-button">Xác nhận</button>
+        </div>
         <script language="javascript">
-            var array = "How are you";
-            var x = "u";
-            function countString(){
-                var count = 0;
-                for(var i = 0; i < array.length; ++i){
-                    if(array.substring(i, i + x.length) == x){
-                        count += 1;
+            function countString(array, x){
+                let count = 0;
+                for(let i = 0; i < array.length; ++i){
+                    if(array[i] === x){
+                        count ++;
                     }
                 }
-                return count;
+                if(x){
+                    return ` Kí tự ${x} xuất hiện ${count} lần trong từ ${array}`;
+                }else{
+                    return ` Không hợp lệ `;
+                }
+                
             }
-            
-            var result = countString(x, array);
-            console.log("Kí tự " + x + " " + "xuất hiện" + " " + result + " " +  "lần");
+
+            const button = document.getElementById("button");
+            button. addEventListener("click", (event) => {
+                const input = document.getElementById("inputField");
+                const input2 = document.getElementById("inputField2");
+                const value = input.value;
+                const value2 = input2.value;
+                const result = document.getElementById("result");
+                result.innerHTML = countString(value, value2);
+            });
         </script>   
     </body>
 </html>

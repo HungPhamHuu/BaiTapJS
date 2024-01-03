@@ -3,26 +3,96 @@
     <head>
         <title>Bài 11</title>
         <meta charset="UTF-8">
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                height: 80vh;
+                background-color: white;
+                margin: 0;
+            }
+
+            .custom-form{
+                background-color: white;
+                border-radius: 2px;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+            .form-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            .form-input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .submit-button {
+                padding: 10px 20px;
+                background-color: #10c5e6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: #10c5e6;
+            }
+            #result {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+            #inputField{
+                margin-bottom: 15px;
+            }
+        </style>
     </head>
     <body>
+        <div class="custom-form">
+            <div class="form-group">
+                <label for="inputField" class="form-label">Nhập thông tin</label>
+                <input type="text" id="inputField" name="inputField" class="form-input" required>
+            </div>
+        
+            <div id="result"></div>
+        
+            <button id="button" class="submit-button">Xác nhận</button>
+        </div>
         <script language="javascript">
-            var array = [13, 90, 67, 4, 100, 32, 1, 56, 45];
             function checkArray(array){
-                var arrayLength = array.length;
+                var x = array.length;
 
-                for(let i = 0; i < arrayLength - 1; i++){
-                    for(let x = 0; x < arrayLength - 1 -i; x++){
-                        if(array[x] > array[x + 1]){
-                            var result = array[x];
-                            array[x] = array[x + 1];
-                            array[x + 1] = result;
+                for(let i = 0; i < x - 1; i++){
+                    for(let a = 0; a < x - 1 - i; a++){
+                        if(array[a] > array[a + 1]){
+                            var b = array[a];
+                            array[a] = array[a + 1];
+                            array[a + 1] = b;
                         }
                     }
                 }
                 return array;
-            }   
+            }
 
-            console.log(checkArray(array));
+            const button = document.getElementById("button");
+            button.addEventListener("click", (event) => {
+                const input = document.getElementById("inputField");
+                const value = input.value;
+                const array = value.split(',').map(Number);
+                const ketQua = checkArray(array);
+                const result = document.getElementById("result");
+                result.innerHTML = ` Mảng được sắp xếp theo thứ tự tăng dần: ${ketQua.join(", ")} `;
+            })
         </script>
     </body>
 </html>

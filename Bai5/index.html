@@ -2,26 +2,103 @@
 <html>
     <head>
         <title>Bài 5</title>
-        <meta charset="UTF-8">
-    </head> 
-    <body>
-        <script language="javascript">
-            var fullName = "Pham Huu Hung";
-            function formatFullName(fullName){
-                var name = fullName.split(" ");
-                var formatName = "";
-                for(let i = 0; i < name.length; i++){
-                    if(i === 0 || i === 1){
-                        formatName += name[i].charAt(0).toLowerCase();
-                    }
-                    else{
-                        formatName += name[i].toLowerCase();
-                    }
-                }
-                return formatName;
+        <!-- <meta charset="UTF-8"> -->
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                height: 80vh;
+                background-color: white;
+                margin: 0;
             }
 
-            console.log(formatFullName(fullName));
+            .custom-form{
+                background-color: white;
+                border-radius: 2px;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+            .form-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            .form-input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .submit-button {
+                padding: 10px 20px;
+                background-color: #10c5e6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: #10c5e6;
+            }
+            #result {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+        </style>
+    </head> 
+    <body>
+        <div class="custom-form">
+            <div class="form-group">
+                <label for="inputField" class="form-label">Nhập thông tin:</label>
+                <input type="text" id="inputField" name="inputField" class="form-input" required>
+            </div>
+
+            <div id="result"></div>
+
+            <button id="button" class="submit-button">Xác nhận</button>
+        </div>
+        <script language="javascript">
+            function formatFullName(fullName){
+                const nameArray = fullName.split(" ");
+                let name = "";
+                if(fullName.length < 2){
+                    alert("Vui lòng nhập ít nhất 2 chữ");
+                    return "";
+                }
+
+                for(let i = 0; i < nameArray.length; i++){
+                    if (i === nameArray.length - 1) {
+                        // Nếu là từ cuối cùng, lấy tất cả ký tự
+                        name += nameArray[i].toLowerCase();
+                    } else {
+                        // Ngược lại, chỉ lấy ký tự đầu tiên
+                        name += nameArray[i].charAt(0).toLowerCase();
+                    }
+                }
+                name = name.replace(/[áàảãạâấầẩẫậăắằẳẵặ]/g, 'a');
+                name = name.replace(/[éèẻẽẹêếềểễệ]/g, 'e');
+                name = name.replace(/[íìỉĩị]/g, 'i');
+                name = name.replace(/[óòỏõọôốồổỗộơớờởỡợ]/g, 'o');
+                name = name.replace(/[úùủũụưứừửữự]/g, 'u');
+                name = name.replace(/[ýỳỷỹỵ]/g, 'y');
+                return name;
+            }
+
+            const button = document.getElementById("button");
+            button.addEventListener("click", (event) => {
+                const input = document.getElementById("inputField");
+                const value = input.value;
+                const result = document.getElementById("result");
+                result.innerHTML = ` Chuỗi được chuyển thành:  ${formatFullName(value)}`;
+            });
         </script>
     </body>
 </html>
